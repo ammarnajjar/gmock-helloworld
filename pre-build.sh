@@ -1,18 +1,23 @@
 #!/bin/bash
 
-rm -rf build
-rm -rf googletest
+# prepare googletest lib
+if [ -d googletest ]
+then
+	cd googletest
+	git pull
+else
+	# git clone https://github.com/google/googletest.git
+	git clone https://github.com/ammarnajjar/googletest.git
+fi
 
-git clone https://github.com/google/googletest.git
-cd googletest
-mkdir build
-cd build
-cmake ..
-make
-
-cd ..
-
-mkdir build
-cd build
+# clean build dir
+if [ -d build ]
+then
+	cd build
+	rm -rf *
+else
+	mkdir build
+	cd build
+fi
 
 # vim: set ft=sh ts=4 sw=4 noet ai :

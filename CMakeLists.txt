@@ -10,8 +10,8 @@ if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 
-include_directories(${PROJECT_SOURCE_DIR}/googletest/googlemock/include/ ${PROJECT_SOURCE_DIR}/googletest/googletest/include/)
-link_directories(${PROJECT_SOURCE_DIR}/googletest/build/googlemock ${PROJECT_SOURCE_DIR}/googletest/build/googlemock/gtest)
+add_subdirectory(googletest)
+include_directories(googlemock/include googletest/include)
 
 set (SRCS main.cc)
 set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall -g")
@@ -19,23 +19,10 @@ set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall -g")
 add_executable (hello ${SRCS})
 
 add_subdirectory(Test)
-set(Sources
-    Test/main.cc
-    Test/test.cc
-    )
-
-add_executable(tests ${Sources})
-target_link_libraries(tests
-	ptest
-    pthread
-    gmock
-    gtest
-    )
-
-
-add_test(alltests tests)
+add_test(alltests Test/run_tests)
 
 option(WITH_TEST "build test" ON)
 if(WITH_TEST)
 	enable_testing()
 endif()
+
