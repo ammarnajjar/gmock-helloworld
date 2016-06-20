@@ -1,0 +1,6 @@
+{
+  "name": "Gmock-helloworld",
+  "tagline": "c++ example gmock cmake.",
+  "body": "## gmock helloworld\r\nA sample project for using cmake and gmock. Tested with Jenkins CI.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
